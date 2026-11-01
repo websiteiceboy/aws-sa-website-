@@ -60,16 +60,15 @@ masego leeuw st10530142
   Google Business Profile listing are recommended.
 
 ## Deployment
+https://chimerical-paprenjak-44c82b.netlify.app/.
 
-Deployed at: `<paste your live URL here>`
 
 **GitHub Pages:** repo Settings > Pages > Source: *Deploy from a branch* > `main` / `(root)` > Save.
 **Netlify:** drag the project folder onto app.netlify.com/drop, or connect the GitHub repo.
 
-After deploying, replace `https://YOUR-USERNAME.github.io/aws-sa-website/` with your
-real URL in the `canonical` and `og:` tags of every page, `robots.txt` and `sitemap.xml`.
 
-## References (add to your list)
+
+## References
 
 - MDN Web Docs. (2026) *IntersectionObserver*. Available at: https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver .
 - MDN Web Docs. (2026) *Using the Fetch API*. Available at: https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch .

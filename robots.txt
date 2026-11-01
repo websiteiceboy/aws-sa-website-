@@ -3,4 +3,4 @@ User-agent: *
 Allow: /
 Disallow: /screenshots/
 
-Sitemap: https://YOUR-USERNAME.github.io/aws-sa-website/sitemap.xml
+Sitemap: https://chimerical-paprenjak-44c82b.netlify.app/sitemap.xml
