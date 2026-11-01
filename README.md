@@ -60,7 +60,7 @@ masego leeuw st10530142
   Google Business Profile listing are recommended.
 
 ## Deployment
-https://chimerical-paprenjak-44c82b.netlify.app/.
+Deployed at: https://chimerical-paprenjak-44c82b.netlify.app/
 
 
 **GitHub Pages:** repo Settings > Pages > Source: *Deploy from a branch* > `main` / `(root)` > Save.
