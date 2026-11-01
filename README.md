@@ -1,4 +1,4 @@
-# README additions — Part 3 (Enhancing Functionality and SEO)
+# AWS SA Website
 masego leeuw st10530142
 
 
