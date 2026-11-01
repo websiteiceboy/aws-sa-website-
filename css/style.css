@@ -1,0 +1,980 @@
+/* =========================================================================
+   AWS SA — Animal Welfare Society of South Africa
+   style.css
+   Part 2: CSS Styling and Responsive Design
+
+   Contents:
+   1.  CSS Reset
+   2.  Custom Properties (design tokens)
+   3.  Base / Typography
+   4.  Layout helpers (container, grid, flex)
+   5.  Header & Navigation
+   6.  Buttons & Links
+   7.  Hero section
+   8.  Sections: stats, cards, CTA band
+   9.  Forms
+   10. Footer
+   11. Page-specific tweaks
+   12. Responsive Design (media queries)
+   ========================================================================= */
+
+/* -------------------------------------------------------------------------
+   1. CSS RESET
+   A small, hand-written reset rather than a full external library, so that
+   every browser starts from the same predictable baseline before our own
+   styles are applied.
+   ------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  /* 1rem = 16px by default; every rem value in this file is relative to this */
+  scroll-behavior: smooth;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+/* -------------------------------------------------------------------------
+   2. CUSTOM PROPERTIES — design tokens
+   Colour palette follows the project proposal: dark green, cream and
+   orange, with a warm neutral for supporting text.
+   ------------------------------------------------------------------------- */
+:root {
+  /* Colour */
+  --color-green-dark: #1b4d37;   /* primary brand colour: headers, nav, footer */
+  --color-green-mid: #2c6b4f;    /* secondary green: hovers, section backgrounds */
+  --color-cream: #faf6ec;        /* main background */
+  --color-cream-deep: #f0e8d3;   /* alternate section background */
+  --color-orange: #e8792b;       /* accent: calls to action, highlights */
+  --color-orange-dark: #c8611b;  /* accent hover state */
+  --color-ink: #22281f;          /* body text */
+  --color-ink-soft: #4b5346;     /* secondary text */
+  --color-border: #ddd2b8;       /* hairline borders on cream */
+
+  /* Typography */
+  --font-heading: "Poppins", "Segoe UI", sans-serif;
+  --font-body: "Inter", "Segoe UI", sans-serif;
+
+  --step-0: 1rem;        /* body text */
+  --step-1: 1.25rem;     /* lead text */
+  --step-2: 1.75rem;     /* h3 */
+  --step-3: 2.25rem;     /* h2 */
+  --step-4: 3rem;        /* h1 / hero */
+
+  /* Layout */
+  --container-width: 75rem;   /* 1200px */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.5rem;
+  --space-xl: 4rem;
+
+  --radius: 0.75rem;
+  --shadow-card: 0 0.5rem 1.5rem rgba(27, 77, 55, 0.12);
+}
+
+/* -------------------------------------------------------------------------
+   3. BASE / TYPOGRAPHY
+   ------------------------------------------------------------------------- */
+body {
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.65;
+  color: var(--color-ink);
+  background-color: var(--color-cream);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--color-green-dark);
+  letter-spacing: -0.01em;
+}
+
+h1 {
+  font-size: var(--step-4);
+}
+
+h2 {
+  font-size: var(--step-3);
+  margin-bottom: var(--space-md);
+}
+
+h3 {
+  font-size: var(--step-2);
+  margin-bottom: var(--space-sm);
+}
+
+p {
+  margin-bottom: var(--space-sm);
+  max-width: 65ch; /* keeps line length readable */
+}
+
+.lead {
+  font-size: var(--step-1);
+  color: var(--color-ink-soft);
+}
+
+.section-eyebrow {
+  color: var(--color-orange);
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+/* -------------------------------------------------------------------------
+   4. LAYOUT HELPERS
+   ------------------------------------------------------------------------- */
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin-inline: auto;
+  padding-inline: var(--space-md);
+}
+
+.section {
+  padding-block: var(--space-xl);
+}
+
+.section--alt {
+  background-color: var(--color-cream-deep);
+}
+
+.section--dark {
+  background-color: var(--color-green-dark);
+  color: var(--color-cream);
+}
+
+.section--dark h2,
+.section--dark h3 {
+  color: var(--color-cream);
+}
+
+/* Flexbox utility used for the header bar and inline groups */
+.flex-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+}
+
+/* CSS Grid utilities used across cards, footer columns and forms */
+.grid {
+  display: grid;
+  gap: var(--space-lg);
+}
+
+.grid--3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grid--4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.grid--2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* -------------------------------------------------------------------------
+   5. HEADER & NAVIGATION
+   ------------------------------------------------------------------------- */
+.site-header {
+  background-color: var(--color-cream);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding-block: var(--space-sm);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1.15rem;
+  color: var(--color-green-dark);
+}
+
+.brand img {
+  width: 2rem;
+  color: var(--color-orange);
+}
+
+.main-nav ul {
+  display: flex;
+  gap: var(--space-md);
+}
+
+.main-nav a {
+  font-weight: 500;
+  padding-block: 0.25rem;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.main-nav a:hover,
+.main-nav a:focus-visible {
+  color: var(--color-orange);
+  border-color: var(--color-orange);
+}
+
+.main-nav a[aria-current="page"] {
+  color: var(--color-green-mid);
+  border-color: var(--color-green-mid);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+/* Simple nav toggle checkbox hack: hidden on desktop, used on mobile.
+   Full interactive behaviour (animating open/close) is planned for Part 3
+   once JavaScript is introduced; for now it relies on the checkbox input
+   so the menu is still usable without JS. */
+.nav-toggle {
+  display: none;
+}
+
+.nav-toggle-label {
+  display: none;
+  cursor: pointer;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  border: 1px solid var(--color-green-dark);
+  border-radius: var(--radius);
+  padding: 0.4rem 0.75rem;
+}
+
+/* -------------------------------------------------------------------------
+   6. BUTTONS & LINKS
+   ------------------------------------------------------------------------- */
+.btn {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn--primary {
+  background-color: var(--color-orange);
+  color: #fff;
+}
+
+.btn--primary:hover,
+.btn--primary:focus-visible {
+  background-color: var(--color-orange-dark);
+}
+
+.btn--outline {
+  background-color: transparent;
+  border-color: var(--color-cream);
+  color: var(--color-cream);
+}
+
+.btn--outline:hover,
+.btn--outline:focus-visible {
+  background-color: var(--color-cream);
+  color: var(--color-green-dark);
+}
+
+.btn--ghost {
+  background-color: transparent;
+  border-color: var(--color-green-dark);
+  color: var(--color-green-dark);
+}
+
+.btn--ghost:hover,
+.btn--ghost:focus-visible {
+  background-color: var(--color-green-dark);
+  color: var(--color-cream);
+}
+
+/* Visible keyboard focus across the site, not just on buttons */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--color-orange);
+  outline-offset: 2px;
+}
+
+/* -------------------------------------------------------------------------
+   7. HERO SECTION
+   ------------------------------------------------------------------------- */
+.hero {
+  background-color: var(--color-cream-deep);
+  overflow: hidden;
+}
+
+.hero .container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: var(--space-lg);
+  padding-block: var(--space-xl);
+}
+
+.hero__copy h1 {
+  margin-bottom: var(--space-sm);
+}
+
+.hero__copy p {
+  margin-bottom: var(--space-lg);
+}
+
+.hero__actions {
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.hero__image img {
+  border-radius: var(--radius);
+}
+
+/* -------------------------------------------------------------------------
+   8. SECTIONS: stats, cards, CTA band
+   ------------------------------------------------------------------------- */
+.stats {
+  text-align: center;
+}
+
+.stat__number {
+  font-family: var(--font-heading);
+  font-size: var(--step-3);
+  color: var(--color-orange);
+  font-weight: 700;
+}
+
+.stat__label {
+  color: var(--color-ink-soft);
+  font-size: 0.95rem;
+}
+
+.card {
+  background-color: var(--color-cream);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-card);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-0.25rem);
+  box-shadow: 0 1rem 2rem rgba(27, 77, 55, 0.18);
+}
+
+.card__icon {
+  width: 3rem;
+  height: 3rem;
+  color: var(--color-orange);
+  margin-bottom: var(--space-sm);
+}
+
+.card__link {
+  display: inline-block;
+  margin-top: var(--space-xs);
+  font-weight: 600;
+  color: var(--color-green-mid);
+  border-bottom: 2px solid transparent;
+}
+
+.card__link:hover,
+.card__link:focus-visible {
+  border-color: var(--color-green-mid);
+}
+
+.cta-band {
+  text-align: center;
+}
+
+.cta-band__actions {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+  margin-top: var(--space-md);
+}
+
+/* -------------------------------------------------------------------------
+   9. FORMS (Enquiry & Contact pages)
+   ------------------------------------------------------------------------- */
+.form {
+  display: grid;
+  gap: var(--space-md);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+}
+
+.field {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.field label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--color-green-dark);
+}
+
+.field input,
+.field select,
+.field textarea {
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  padding: 0.7rem 0.9rem;
+  background-color: #fff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: var(--color-orange);
+  box-shadow: 0 0 0 3px rgba(232, 121, 43, 0.2);
+  outline: none;
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 8rem;
+}
+
+.field--radios {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+}
+
+.form-note {
+  font-size: 0.85rem;
+  color: var(--color-ink-soft);
+}
+
+/* -------------------------------------------------------------------------
+   10. FOOTER
+   ------------------------------------------------------------------------- */
+.site-footer {
+  background-color: var(--color-green-dark);
+  color: var(--color-cream);
+  padding-block: var(--space-xl) var(--space-lg);
+}
+
+.site-footer h4 {
+  color: var(--color-cream);
+  font-size: 1rem;
+  margin-bottom: var(--space-sm);
+}
+
+.site-footer a:hover,
+.site-footer a:focus-visible {
+  color: var(--color-orange);
+}
+
+.footer-grid {
+  grid-template-columns: 1.3fr 1fr 1fr 1fr;
+  margin-bottom: var(--space-lg);
+}
+
+.footer-branch {
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: var(--space-sm);
+}
+
+.footer-branch img {
+  width: 1.25rem;
+  flex-shrink: 0;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(250, 246, 236, 0.2);
+  padding-top: var(--space-md);
+  font-size: 0.85rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  color: rgba(250, 246, 236, 0.75);
+}
+
+/* -------------------------------------------------------------------------
+   11. PAGE-SPECIFIC TWEAKS
+   ------------------------------------------------------------------------- */
+.page-header {
+  background-color: var(--color-green-dark);
+  color: var(--color-cream);
+  text-align: center;
+  padding-block: var(--space-xl);
+}
+
+.page-header h1 {
+  color: var(--color-cream);
+}
+
+.page-header p {
+  max-width: 45ch;
+  margin-inline: auto;
+  color: rgba(250, 246, 236, 0.85);
+}
+
+.map-placeholder {
+  border: 2px dashed var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--space-lg);
+  text-align: center;
+  color: var(--color-ink-soft);
+  background-color: var(--color-cream-deep);
+}
+
+/* -------------------------------------------------------------------------
+   12. RESPONSIVE DESIGN
+   Breakpoints:
+     - Below 1024px (tablet): collapse hero and 3/4-column grids to 2 columns
+     - Below 768px (large mobile): stack nav, collapse grids to 1 column
+     - Below 480px (small mobile): tighten spacing and type scale
+   Relative units (rem, %, em) are used throughout the stylesheet above so
+   that these breakpoints only need to change layout, not re-declare sizes.
+   ------------------------------------------------------------------------- */
+
+/* ---- Tablet ---- */
+@media (max-width: 64rem) {
+  .grid--4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid--3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .hero .container {
+    grid-template-columns: 1fr;
+  }
+
+  .hero__image {
+    order: -1;
+  }
+}
+
+/* ---- Mobile ---- */
+@media (max-width: 48rem) {
+  :root {
+    --step-4: 2.25rem;
+    --step-3: 1.75rem;
+    --step-2: 1.4rem;
+    --space-xl: 2.5rem;
+  }
+
+  .main-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--color-cream);
+    border-bottom: 1px solid var(--color-border);
+    display: none;
+  }
+
+  .main-nav ul {
+    flex-direction: column;
+    padding: var(--space-md);
+    gap: var(--space-sm);
+  }
+
+  .nav-toggle:checked ~ .main-nav {
+    display: block;
+  }
+
+  .nav-toggle-label {
+    display: inline-block;
+  }
+
+  .site-header .container {
+    position: relative;
+    flex-wrap: wrap;
+  }
+
+  .grid--4,
+  .grid--3,
+  .grid--2 {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+/* ---- Small mobile ---- */
+@media (max-width: 30rem) {
+  .container {
+    padding-inline: var(--space-sm);
+  }
+
+  .section {
+    padding-block: var(--space-lg);
+  }
+
+  .hero__actions,
+  .cta-band__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn {
+    text-align: center;
+  }
+}
+
+/* =========================================================================
+   13. PART 3 ADDITIONS — interactive components
+   ========================================================================= */
+
+/* ---- Scroll-reveal animation (JS adds .will-reveal then .is-visible) ---- */
+.will-reveal {
+  opacity: 0;
+  transform: translateY(1.25rem);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.will-reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .will-reveal,
+  .card {
+    transition: none;
+  }
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+/* ---- Form errors, hints and status ---- */
+.field__error {
+  color: #b3261e;
+  font-size: 0.85rem;
+  min-height: 1.1em;
+}
+
+.field.has-error input,
+.field.has-error select,
+.field.has-error textarea {
+  border-color: #b3261e;
+  background-color: #fff6f5;
+}
+
+.field__hint {
+  font-size: 0.8rem;
+  color: var(--color-ink-soft);
+  text-align: right;
+}
+
+.form-status {
+  font-weight: 500;
+  color: #b3261e;
+  min-height: 1.5em;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+/* ---- Result / email preview panels ---- */
+.result-panel {
+  background-color: var(--color-cream);
+  border: 2px solid var(--color-green-mid);
+  border-left-width: 0.5rem;
+  border-radius: var(--radius);
+  padding: var(--space-md);
+  margin-top: var(--space-md);
+}
+
+.result-panel:focus {
+  outline: 3px solid var(--color-orange);
+}
+
+.result-panel h3 {
+  margin-bottom: var(--space-xs);
+}
+
+.result-panel dt {
+  font-weight: 600;
+  color: var(--color-green-dark);
+  margin-top: var(--space-xs);
+}
+
+.result-panel pre {
+  white-space: pre-wrap;
+  font-family: var(--font-body);
+  background-color: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  padding: var(--space-sm);
+  margin-block: var(--space-xs) var(--space-sm);
+}
+
+/* ---- Accordion ---- */
+.accordion {
+  display: grid;
+  gap: var(--space-xs);
+  max-width: 50rem;
+}
+
+.accordion__item {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background-color: var(--color-cream);
+  overflow: hidden;
+}
+
+.accordion__button {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: var(--color-green-dark);
+  transition: background-color 0.2s ease;
+}
+
+.accordion__button:hover {
+  background-color: var(--color-cream-deep);
+}
+
+.accordion__button::after {
+  content: "+";
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--color-orange);
+  transition: transform 0.2s ease;
+}
+
+.accordion__button[aria-expanded="true"]::after {
+  content: "\2212"; /* minus sign */
+}
+
+.accordion__panel {
+  padding: 0 var(--space-md) var(--space-sm);
+}
+
+/* ---- Services search / filter controls ---- */
+.service-controls {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: var(--space-md);
+  margin-bottom: var(--space-sm);
+}
+
+.service-count {
+  color: var(--color-ink-soft);
+  margin-bottom: var(--space-md);
+}
+
+/* ---- Gallery + lightbox ---- */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-md);
+}
+
+.gallery__item {
+  padding: 0;
+  border: 2px solid transparent;
+  border-radius: var(--radius);
+  overflow: hidden;
+  cursor: zoom-in;
+  background: none;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.gallery__item:hover,
+.gallery__item:focus-visible {
+  transform: scale(1.03);
+  border-color: var(--color-orange);
+}
+
+.gallery__item img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background-color: rgba(20, 30, 24, 0.9);
+  display: grid;
+  place-items: center;
+  padding: var(--space-md);
+}
+
+.lightbox[hidden] {
+  display: none;
+}
+
+.lightbox__figure {
+  max-width: 56rem;
+  width: 100%;
+  text-align: center;
+  color: var(--color-cream);
+}
+
+.lightbox__figure img {
+  max-height: 70vh;
+  width: auto;
+  margin-inline: auto;
+  border-radius: var(--radius);
+}
+
+.lightbox__figure figcaption {
+  margin-top: var(--space-sm);
+}
+
+.lightbox__close,
+.lightbox__prev,
+.lightbox__next {
+  position: absolute;
+  background-color: var(--color-cream);
+  color: var(--color-green-dark);
+  border: none;
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.lightbox__close:hover,
+.lightbox__prev:hover,
+.lightbox__next:hover {
+  background-color: var(--color-orange);
+  color: #fff;
+}
+
+.lightbox__close { top: var(--space-md); right: var(--space-md); }
+.lightbox__prev { left: var(--space-md); top: 50%; }
+.lightbox__next { right: var(--space-md); top: 50%; }
+
+/* ---- Map embeds ---- */
+.map-frame {
+  width: 100%;
+  height: 20rem;
+  border: 0;
+  border-radius: var(--radius);
+  margin-bottom: var(--space-md);
+}
+
+/* ---- Skip link (accessibility + SEO-friendly semantics) ---- */
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: var(--color-orange);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  z-index: 200;
+}
+
+.skip-link:focus {
+  left: 0;
+}
+
+@media (max-width: 64rem) {
+  .gallery { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 48rem) {
+  .service-controls { grid-template-columns: 1fr; }
+  .lightbox__prev, .lightbox__next { top: auto; bottom: var(--space-md); }
+}

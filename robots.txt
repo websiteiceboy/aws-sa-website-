@@ -1,0 +1,6 @@
+# robots.txt for AWS SA (student project)
+User-agent: *
+Allow: /
+Disallow: /screenshots/
+
+Sitemap: https://YOUR-USERNAME.github.io/aws-sa-website/sitemap.xml

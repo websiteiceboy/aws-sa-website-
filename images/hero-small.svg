@@ -1,0 +1,28 @@
+<svg viewBox="0 0 600 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustration of a dog and cat resting together in the sun">
+  <defs>
+    <linearGradient id="skySm" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FAF6EC"/>
+      <stop offset="100%" stop-color="#F0E8D3"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="500" fill="url(#skySm)"/>
+  <circle cx="470" cy="110" r="70" fill="#E8792B" opacity="0.9"/>
+  <path d="M0 380 C 150 340, 300 400, 600 360 L600 500 L0 500 Z" fill="#2C6B4F"/>
+
+  <g transform="translate(240,280)">
+    <ellipse cx="80" cy="120" rx="120" ry="55" fill="#B9713C"/>
+    <circle cx="190" cy="70" r="55" fill="#B9713C"/>
+    <ellipse cx="150" cy="40" rx="14" ry="24" fill="#8F5527" transform="rotate(-25 150 40)"/>
+    <ellipse cx="225" cy="40" rx="14" ry="24" fill="#8F5527" transform="rotate(25 225 40)"/>
+    <circle cx="210" cy="75" r="4" fill="#241C14"/>
+  </g>
+
+  <g transform="translate(80,300)">
+    <ellipse cx="55" cy="100" rx="85" ry="42" fill="#EDE7D6"/>
+    <circle cx="130" cy="62" r="40" fill="#EDE7D6"/>
+    <path d="M108 34 L116 12 L128 36 Z" fill="#EDE7D6"/>
+    <path d="M150 34 L158 12 L166 38 Z" fill="#EDE7D6"/>
+    <circle cx="140" cy="64" r="3" fill="#241C14"/>
+    <circle cx="122" cy="64" r="3" fill="#241C14"/>
+  </g>
+</svg>

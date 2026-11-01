@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Make an Enquiry | Adopt, Volunteer or Sponsor | AWS SA Cape Town</title>
+  <meta name="description" content="Enquire about adopting a pet, veterinary care, sterilisation, volunteering or sponsoring an animal with the Animal Welfare Society of South Africa.">
+
+  <meta name="keywords" content="adopt a pet Cape Town, volunteer animal shelter Cape Town, sponsor an animal South Africa, vet enquiry Philippi">
+  <meta name="author" content="Masego Leeuw">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://YOUR-USERNAME.github.io/aws-sa-website/enquiry.html">
+
+  <!-- Open Graph / social media sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Animal Welfare Society of South Africa">
+  <meta property="og:title" content="Make an Enquiry | Adopt, Volunteer or Sponsor | AWS SA Cape Town">
+  <meta property="og:description" content="Enquire about adopting a pet, veterinary care, sterilisation, volunteering or sponsoring an animal with the Animal Welfare Society of South Africa.">
+  <meta property="og:url" content="https://YOUR-USERNAME.github.io/aws-sa-website/enquiry.html">
+  <meta property="og:image" content="https://YOUR-USERNAME.github.io/aws-sa-website/images/hero-large.svg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="icon" href="images/paw-mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="index.html">
+        <img src="images/paw-mark.svg" alt="">
+        AWS&nbsp;SA
+      </a>
+
+      <input type="checkbox" id="nav-toggle" class="nav-toggle">
+      <label for="nav-toggle" class="nav-toggle-label">Menu</label>
+
+      <nav class="main-nav" id="primary-nav" aria-label="Primary">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="enquiry.html" aria-current="page">Enquiry</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a class="btn btn--primary" href="enquiry.html">Donate</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="page-header">
+      <div class="container">
+        <h1>Make an Enquiry</h1>
+        <p>Adopt a pet, offer your time as a volunteer, or support our work as a sponsor.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container grid grid--2">
+
+        <div>
+          <p class="section-eyebrow">Tell us what you're interested in</p>
+          <h2>Enquiry Form</h2>
+          <p>
+            Choose a service, tell us a little about yourself, and we will show
+            you the cost and availability straight away. A member of the AWS SA
+            team will then follow up by email. Fields marked * are required.
+          </p>
+          <p class="form-note">
+            Want to speak to someone instead? Call <a href="tel:+27216922626"><strong>021 692 2626</strong></a>
+            or visit our <a href="contact.html"><strong>contact page</strong></a>.
+          </p>
+        </div>
+
+        <div>
+          <form class="form" id="enquiry-form" action="#" method="post" novalidate>
+
+            <div class="field">
+              <label for="service">I'm enquiring about *</label>
+              <select id="service" name="service" required>
+                <option value="">Select a service…</option>
+                <option value="adoption">Adopting a pet</option>
+                <option value="veterinary">Veterinary care</option>
+                <option value="sterilisation">Sterilisation</option>
+                <option value="volunteer">Volunteering</option>
+                <option value="sponsorship">Sponsoring an animal</option>
+              </select>
+              <span class="field__error" aria-live="polite"></span>
+            </div>
+
+            <div class="form-row">
+              <div class="field">
+                <label for="fullName">Full name *</label>
+                <input type="text" id="fullName" name="fullName" autocomplete="name" required>
+                <span class="field__error" aria-live="polite"></span>
+              </div>
+              <div class="field">
+                <label for="phone">Phone number</label>
+                <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="021 692 2626">
+                <span class="field__error" aria-live="polite"></span>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="field">
+                <label for="email">Email address *</label>
+                <input type="email" id="email" name="email" autocomplete="email" required>
+                <span class="field__error" aria-live="polite"></span>
+              </div>
+              <div class="field">
+                <label for="preferredDate">Preferred date</label>
+                <input type="date" id="preferredDate" name="preferredDate">
+                <span class="field__error" aria-live="polite"></span>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="message">Your message *</label>
+              <textarea id="message" name="message" maxlength="500" required placeholder="Tell us a bit about your enquiry..."></textarea>
+              <span class="field__hint" id="message-count">0 / 500</span>
+              <span class="field__error" aria-live="polite"></span>
+            </div>
+
+            <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+            <button type="submit" class="btn btn--primary">Submit Enquiry</button>
+          </form>
+
+          <section class="result-panel" id="enquiry-result" tabindex="-1" hidden aria-live="polite">
+            <h3 id="result-title"></h3>
+            <p id="result-greeting"></p>
+            <dl>
+              <dt>Cost</dt>
+              <dd id="result-cost"></dd>
+              <dt>Availability</dt>
+              <dd id="result-availability"></dd>
+            </dl>
+            <p class="form-note">We will email more details to <strong id="result-email"></strong>.</p>
+          </section>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="grid footer-grid">
+        <div>
+          <div class="brand" style="color:var(--color-cream);">
+            <img src="images/paw-mark.svg" alt="">
+            AWS&nbsp;SA
+          </div>
+          <p style="color:rgba(250,246,236,0.75); margin-top:0.75rem;">
+            Animal Welfare Society of South Africa &mdash; veterinary care,
+            adoption, sterilisation and education, based in Philippi,
+            Cape Town.
+          </p>
+        </div>
+
+        <div>
+          <h4>Quick Links</h4>
+          <ul style="display:grid; gap:0.5rem;">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="enquiry.html">Enquiry</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Get Involved</h4>
+          <ul style="display:grid; gap:0.5rem;">
+            <li><a href="enquiry.html">Adopt a Pet</a></li>
+            <li><a href="enquiry.html">Volunteer</a></li>
+            <li><a href="enquiry.html">Sponsor an Animal</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Contact</h4>
+          <div class="footer-branch">
+            <img src="images/icon-pin.svg" alt="">
+            <span>Philippi, Cape Town</span>
+          </div>
+          <p style="color:rgba(250,246,236,0.75);">021 692 2626<br>admin@awscape.org.za</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 Animal Welfare Society of South Africa. Student project for educational purposes.</span>
+        <span>Built with HTML, CSS &amp; JavaScript</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
